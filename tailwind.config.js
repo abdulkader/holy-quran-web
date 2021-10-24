@@ -1,0 +1,80 @@
+/* eslint-disable no-undef */
+const colors = require('tailwindcss/colors');
+module.exports = {
+  mode: 'jit',
+  purge: {
+    content: [
+      './src/**/*.html',
+      './public/**/*.html',
+      './src/**/*.{js,jsx,ts,tsx,vue}',
+    ],
+    options: {
+      keyframes: true,
+      fontFace: true,
+    },
+  },
+  darkMode: 'media',
+  theme: {
+    colors: {
+      ...colors,
+      quaternary: {
+        50: '#fef9fc',
+        100: '#fcf4fa',
+        200: '#f8e3f1',
+        300: '#f4d3e9',
+        400: '#ebb1d9',
+        500: '#E390C8',
+        600: '#cc82b4',
+        700: '#aa6c96',
+        800: '#885678',
+        900: '#6f4762',
+      },
+      tertiary: {
+        50: '#fcf9fb',
+        100: '#f9f2f8',
+        200: '#efe0ed',
+        300: '#e5cde2',
+        400: '#d2a7cc',
+        500: '#BE81B6',
+        600: '#ab74a4',
+        700: '#8f6189',
+        800: '#724d6d',
+        900: '#5d3f59',
+      },
+      secondary: {
+        50: '#faf8fc',
+        100: '#f6f1f9',
+        200: '#e7dcef',
+        300: '#d9c7e5',
+        400: '#bd9cd2',
+        500: '#A072BE',
+        600: '#9067ab',
+        700: '#78568f',
+        800: '#604472',
+        900: '#4e385d',
+      },
+      primary: {
+        50: '#f7f7fb',
+        100: '#efeef7',
+        200: '#d7d6eb',
+        300: '#bebddf',
+        400: '#8e8bc7',
+        500: '#5D59AF',
+        600: '#54509e',
+        700: '#464383',
+        800: '#383569',
+        900: '#2e2c56',
+      },
+    },
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+    require('tailwindcss-children'),
+  ],
+};
