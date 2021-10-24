@@ -1,0 +1,21 @@
+.ratingStarHolder {
+  display: inline-block;
+  font-size: 0.75rem;
+  --rating-content: '★★★★★';
+  --rating-inactive-color: #cccccc;
+  --rating-background: #fb6b90;
+  @apply px-2;
+}
+
+.ratingStarHolder::before {
+  --rating-percent: calc(var(--rating) * 1%);
+  content: var(--rating-content);
+  background: linear-gradient(
+    90deg,
+    var(--rating-background) var(--rating-percent),
+    var(--rating-inactive-color) var(--rating-percent)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

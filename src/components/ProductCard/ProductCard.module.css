@@ -1,0 +1,18 @@
+.productCardHolder {
+  @apply bg-white shadow-sm rounded-md flex flex-1 flex-col h-full justify-between relative border border-secondary-50;
+}
+
+.productCardHolder:after {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  width: 100%;
+  height: 100%;
+  content: '';
+  z-index: -1;
+  @apply bg-secondary-50 rounded-md transition-all duration-1000;
+}
+
+.productCardHolder:hover:after {
+  @apply bg-secondary-300;
+}

@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOComponent from '@/components/SEOComponent';
 
 const MainLayout = (props) => {
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <Fragment>
+      <SEOComponent data={props.seoData} />
       <Header />
-      <main className="w-full m-0 p-0 flex flex-1 flex-col">
+      <main className="w-full m-0 p-0 flex flex-1 flex-col relative">
         {props.children}
       </main>
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 

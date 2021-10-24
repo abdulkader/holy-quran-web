@@ -1,13 +1,54 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import MainLayout from '@/components/Layouts/MainLayout';
-const Home = () => {
+import Container from '@/components/Container';
+import { useAppContext } from '@/shared/hooks/useAppContext';
+import AudioPlayer from '@/components/AudioPlayer';
+
+const HomePage = () => {
+  const { appState } = useAppContext();
+  const { loading, surahs } = appState;
+  console.log(surahs);
+  const albums = surahs.reduce(
+    (
+      acc,
+      {
+        ayahs,
+        englishName,
+        englishNameTranslation,
+        name,
+        number,
+        revelationType,
+      }
+    ) =>
+      acc.concat(
+        ayahs.reduce(
+          (ac, ay) =>
+            ac.concat({
+              ayah: ay,
+              englishName,
+              englishNameTranslation,
+              name,
+              number,
+              revelationType,
+            }),
+          []
+        )
+      ),
+    []
+  );
   return (
     <MainLayout>
-      <div className="flex-1 flex items-center justify-center">
-        <h1 className="text-3xl text-center text-primary-500">Welcome Page</h1>
-      </div>
+      <Container className="flex flex-wrap justify-start">
+        {loading ? (
+          <div>Loading</div>
+        ) : (
+          <Fragment>
+            <AudioPlayer albums={albums} />
+          </Fragment>
+        )}
+      </Container>
     </MainLayout>
   );
 };
 
-export default Home;
+export default HomePage;

@@ -4,7 +4,9 @@ import cx from 'classnames';
 
 const Container = (props) => {
   return (
-    <div className={cx('w-full px-4', props.className)}>{props.children}</div>
+    <div className={cx('container px-1 md:px-4 mx-auto', props.className)}>
+      {props.children}
+    </div>
   );
 };
 

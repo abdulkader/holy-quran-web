@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <div className="flex flex-nowrap justify-between align-middle items-center bg-gray-200 p-3">
       <p className="text-center w-full text-xs font-semibold text-gray-700">
-        Copyright 2020. All rights reserved
+        Made with Love
       </p>
     </div>
   );

@@ -1,16 +1,22 @@
 import React from 'react';
 
-const lazyLoader = name => React.lazy(() => import(`../pages/${name}/index.jsx`));
+const lazyPageLoader = (name, file = 'index') =>
+  React.lazy(() => import(`../pages/${name}/${file}.jsx`));
 
 export const routes = [
   {
     path: '/',
     exact: true,
-    component: lazyLoader('Home'),
+    component: lazyPageLoader('Home'),
   },
   {
-    path: '/about-us',
+    path: '/surah/:surahId/:url*',
     exact: true,
-    component: lazyLoader('About'),
+    component: lazyPageLoader('Surah'),
+  },
+  {
+    path: '/:url*',
+    exact: true,
+    component: lazyPageLoader('ErrorPages', 'NotFound404'),
   },
 ];
