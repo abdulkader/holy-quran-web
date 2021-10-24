@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { PauseIcon, PlayIcon, PrevIcon, NextIcon } from '@/components/Icons';
 
 const AudioPlayer = ({ albums }) => {
+  const [currentAlbums, setcurrentAlbums] = useState(albums);
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const audioSrc = albums?.[trackIndex]?.ayah?.audio || null;
+  const audioSrc = currentAlbums?.[trackIndex]?.ayah?.audio || null;
   const audioRef = useRef(new Audio(audioSrc));
   const intervalRef = useRef();
   const isReady = useRef(false);
@@ -53,15 +53,18 @@ const AudioPlayer = ({ albums }) => {
   };
 
   useEffect(() => {
+    setcurrentAlbums(albums);
     return () => {
       audioRef.current.pause();
+      setIsPlaying(false);
+      setTrackIndex(0);
       clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [albums]);
 
   useEffect(() => {
     audioRef.current.pause();
-    const audioSource = albums?.[trackIndex]?.ayah?.audio || null;
+    const audioSource = currentAlbums?.[trackIndex]?.ayah?.audio || null;
     audioRef.current = new Audio(audioSource);
     setTrackProgress(audioRef.current.currentTime);
 
@@ -73,7 +76,7 @@ const AudioPlayer = ({ albums }) => {
       isReady.current = true;
     }
   }, [trackIndex]);
-  const currentAlbum = albums?.[trackIndex] || null;
+  const currentAlbum = currentAlbums?.[trackIndex] || null;
   return (
     <div className="w-full block p-4">
       <div className="bg-white shadow-xl p-4 flex flex-nowrap justify-between align-middle items-center">
